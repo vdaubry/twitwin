@@ -22,5 +22,9 @@ module Twitwin
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+
+    config.api_session_expiration = 60*60*24*15 #15 days
   end
 end

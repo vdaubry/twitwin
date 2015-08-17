@@ -3,6 +3,7 @@ require "rails_helper"
 describe User do
   
   let(:user) { FactoryGirl.create(:user) }
+  let(:tweet) { FactoryGirl.create(:tweet) }
   
   describe "create" do
     it { FactoryGirl.build(:user).save.should == true }
@@ -22,7 +23,6 @@ describe User do
 
       describe "has many tweets" do
         before(:each) do
-          tweet = FactoryGirl.create(:tweet)
           TweetsUser.create(user: user, tweet: tweet)
         end
 

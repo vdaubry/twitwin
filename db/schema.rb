@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150814193932) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authentication_providers", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.string   "provider",   null: false
@@ -23,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150814193932) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "authentication_providers", ["uid"], name: "index_authentication_providers_on_uid", unique: true
-  add_index "authentication_providers", ["user_id"], name: "index_authentication_providers_on_user_id"
+  add_index "authentication_providers", ["uid"], name: "index_authentication_providers_on_uid", unique: true, using: :btree
+  add_index "authentication_providers", ["user_id"], name: "index_authentication_providers_on_user_id", using: :btree
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "tweet_id",         null: false
@@ -36,19 +39,20 @@ ActiveRecord::Schema.define(version: 20150814193932) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "tweets", ["created_at"], name: "index_tweets_on_created_at"
+  add_index "tweets", ["created_at"], name: "index_tweets_on_created_at", using: :btree
 
-  create_table "tweets_users", force: :cascade do |t|
+  create_table "tweets_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "tweet_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "tweets_users", ["user_id", "tweet_id"], name: "index_tweets_users_on_user_id_and_tweet_id"
+  add_index "tweets_users", ["user_id", "tweet_id"], name: "index_tweets_users_on_user_id_and_tweet_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
+    t.string   "nickname"
     t.string   "name"
     t.string   "avatar"
     t.boolean  "admin",      default: false, null: false

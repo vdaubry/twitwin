@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.2'
 
 gem 'rails',                      '~> 4.2.0'
 gem 'pg',                         '~> 0.18.1'
@@ -23,12 +23,14 @@ gem 'sidekiq'
 group :development, :test do  
   gem 'byebug',               '~> 4.0.4'
   gem 'spring',               '~> 1.3.6'
-  gem 'rspec-rails',          '~> 3.1.0'
-  gem 'mocha',                '~> 1.1.0'
-  gem 'factory_girl_rails',   '~> 4.5.0'
+  gem 'bullet',               '~> 4.14.7'
 end
 
 group :test do
   gem 'webmock',              '~> 1.20.4'
   gem 'vcr',                  '~> 2.9.3'
+  gem 'fakeredis',            '~> 0.5.0'
+  gem 'rspec-rails',          '~> 3.1.0'
+  gem 'mocha',                '~> 1.1.0'
+  gem 'factory_girl_rails',   '~> 4.5.0'
 end
