@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: UTF8
+  pool: 100
+  username: twitwin
+
+development:
+  <<: *default
+  database: twitwin_development
+  password: 
+
+test:
+  <<: *default
+  database: twitwin_test
+  password: 
+
+production:
+  <<: *default
+  database: twitwin_production
+  password: <%= ENV['DATABASE_PASSWORD'] %>

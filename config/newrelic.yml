@@ -1,0 +1,15 @@
+common: &default_settings
+  license_key: e174c1116eb37d956c24f030afd81d2e4d467d3c
+  app_name: Linkastor
+  log_level: info
+
+development:
+  <<: *default_settings
+  app_name: Linkastor dev
+  developer_mode: true
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+production:
+  <<: *default_settings

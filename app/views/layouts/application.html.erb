@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitwin</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+    <%= render partial: "layouts/header" %>
+    <div class="container">
+      <%= render partial: "layouts/alert" %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
