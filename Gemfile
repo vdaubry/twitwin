@@ -14,16 +14,18 @@ gem 'puma',                       '~> 2.11.1'
 gem 'omniauth-twitter',           '~> 1.1.0'
 gem 'twitter',                    '~> 5.14.0'
 gem 'redis',                      '~> 3.2.0'
-gem 'kaminari'
+gem 'kaminari',                   '~> 0.16.3'
 gem 'sentry-raven',               '~> 0.13.1'
 gem 'newrelic_rpm',               '~> 3.12.0'
 gem 'mechanize',                  '~> 2.7.3'
-gem 'sidekiq'
+gem 'sidekiq',                    '~> 3.4.1'
 
 group :development, :test do  
   gem 'byebug',               '~> 4.0.4'
   gem 'spring',               '~> 1.3.6'
   gem 'bullet',               '~> 4.14.7'
+  gem 'dotenv-rails',         '~> 2.0.2'
+  gem 'pry',                  '~> 0.10.1'
 end
 
 group :test do
@@ -33,4 +35,5 @@ group :test do
   gem 'rspec-rails',          '~> 3.1.0'
   gem 'mocha',                '~> 1.1.0'
   gem 'factory_girl_rails',   '~> 4.5.0'
+  gem 'timecop',              '~> 0.8.0'
 end

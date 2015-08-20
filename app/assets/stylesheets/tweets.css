@@ -1,0 +1,23 @@
+.grid.image {
+    margin-top: 20px;
+    width: 358px;
+    height: auto;
+    overflow: hidden;
+}
+
+.panel.panel-default {
+    height: 500px;
+}
+
+.tweet-info {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    height: 90px;
+}
+
+.btn-play {
+    width: 92%;
+    position: absolute;
+    bottom:21px;
+}

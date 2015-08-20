@@ -7,10 +7,8 @@ module TwitterClient
       end
     end
     
-    def tweets(username:, since:)
-      options = {count: 200}
-      tweets = @client.user_timeline(username, options)
-      tweets.select {|tweet| tweet.created_at > since}
+    def tweets(text:, options: {})
+      @client.search(text, options)
     end
   end
 end

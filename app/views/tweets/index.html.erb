@@ -1,0 +1,26 @@
+<div class="row">
+  <% @tweets.each do |tweet| %>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+      <div class="panel panel-default">
+        <div class="row tweet-info">
+          <div class="col-lg-2">
+            <%= image_tag tweet.author_image_url%>
+          </div>
+          <div class="col-lg-10">
+            <%= link_to tweet.text, tweet.link %>
+          </div>
+        </div>
+        <div class="grid image">
+          <%= image_tag tweet.image_url, class: "img-responsive" %>
+        </div>
+        <%= link_to "Click to play !", "#", class: "btn btn-success btn-play" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="center-block">
+    <%= paginate @tweets %>
+  </div>
+</div>

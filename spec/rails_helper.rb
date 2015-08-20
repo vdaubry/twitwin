@@ -22,6 +22,3 @@ VCR.configure do |c|
   c.default_cassette_options = { :record => :new_episodes }
   c.configure_rspec_metadata!
 end
-
-ENV["TWITTER_OAUTH_API_ID"]="byrT1MImpBvXWN3nyhASlUT58"
-ENV["TWITTER_OAUTH_API_SECRET"]="aluRjoofmHzdfM8M6pthWenlqghGADgiqtXPnpOyQ2A9oF4SMg"

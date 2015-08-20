@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814193932) do
+ActiveRecord::Schema.define(version: 20150820120906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,16 +30,20 @@ ActiveRecord::Schema.define(version: 20150814193932) do
   add_index "authentication_providers", ["user_id"], name: "index_authentication_providers_on_user_id", using: :btree
 
   create_table "tweets", force: :cascade do |t|
-    t.integer  "tweet_id",         null: false
-    t.text     "text",             null: false
+    t.integer  "tweet_id",         limit: 8, null: false
+    t.text     "text",                       null: false
     t.string   "image_url"
     t.string   "link"
-    t.string   "author_image_url", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "author_image_url",           null: false
+    t.datetime "tweeted_at",                 null: false
+    t.string   "language",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "tweets", ["created_at"], name: "index_tweets_on_created_at", using: :btree
+  add_index "tweets", ["text"], name: "index_tweets_on_created_at_by_day", unique: true, using: :btree
+  add_index "tweets", ["tweet_id"], name: "index_tweets_on_tweet_id", unique: true, using: :btree
+  add_index "tweets", ["tweeted_at"], name: "index_tweets_on_tweeted_at", using: :btree
 
   create_table "tweets_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false

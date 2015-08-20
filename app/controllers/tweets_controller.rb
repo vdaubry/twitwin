@@ -1,7 +1,6 @@
-class HomeController < ApplicationController
+class TweetsController < ApplicationController
   def index
-    #Display tweets by date
-    @tweets = Tweet.recent.limit(10)
+    @tweets = Tweet.recent.page(params[:page]).per(50)
     @played = current_user.tweets.where(id: @tweets.map(&:id)) if current_user
   end
 end
