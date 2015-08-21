@@ -7,16 +7,18 @@ class TweetImportJob
     tweets = tweets.take(100)
     tweets.reject! {|tweet| tweet.retweeted? }
     if tweets.present?
-      tweets.map do |tweet|
-        tweet = Tweet.create(tweet_id: tweet.id,
-                      text: tweet.text,
-                      tweeted_at: tweet.created_at,
-                      author_image_url: tweet.user.profile_image_uri.to_s,
-                      image_url: tweet_image_url(tweet),
-                      link: link(tweet),
-                      language: "en",
+      tweets.map do |api_tweet|
+        db_tweet = Tweet.create(tweet_id: api_tweet.id,
+                      text: api_tweet.text,
+                      tweeted_at: api_tweet.created_at,
+                      author_image_url: api_tweet.user.profile_image_uri.to_s,
+                      image_url: tweet_image_url(api_tweet),
+                      link: link(api_tweet),
+                      language: api_tweet.lang,
+                      username: TweetExtensions::Meta.new(text: api_tweet.text,
+                                                          author: api_tweet.user.screen_name).username,
                       created_at: DateTime.now)
-        Rails.logger.debug tweet.errors.full_messages if tweet.errors.present?
+        Rails.logger.debug db_tweet.errors.full_messages if db_tweet.errors.present?
       end
     end
   end

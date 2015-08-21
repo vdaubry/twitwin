@@ -7,5 +7,6 @@ FactoryGirl.define do
     author_image_url  "http://foo.bar/img.jpg"
     language          "en"
     tweeted_at        Date.parse("10/10/2010")
+    username          "foo"
   end
 end

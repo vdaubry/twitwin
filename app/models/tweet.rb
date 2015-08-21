@@ -7,7 +7,7 @@ class Tweet < ActiveRecord::Base
 
   def unique_text_by_day
     if self.created_at && Tweet.where(text: self.text)
-            .where("date_trunc('day', created_at) = '#{self.created_at.beginning_of_day.strftime("%Y-%m-%d %H:%M:%S")}'")
+            .where("date(created_at) = date('#{self.created_at.strftime("%Y-%m-%d")}')")
             .count>0
       errors.add(:text, "already exist for this day")
     end
