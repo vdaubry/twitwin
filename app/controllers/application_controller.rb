@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  
+  helper_method :current_user
+
   def authenticate_current_user!
     if session[:user_id].blank?
       flash[:info] = "Please sign in with twitter to access this page"
@@ -16,4 +17,5 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
+
 end
