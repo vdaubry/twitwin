@@ -30,5 +30,13 @@ describe SessionsController do
       response.should redirect_to '/'
     end
   end
+
+  describe "DELETE destroy" do
+    it "clears session id" do
+      session[:user_id] = user.id
+      delete :destroy, id: user.to_param
+      session[:user_id].should == nil
+    end
+  end
 end
 

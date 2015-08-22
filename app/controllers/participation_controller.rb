@@ -5,7 +5,7 @@ class ParticipationController < ApplicationController
   def create
     TweetsUser.create!(user_id: current_user.id,
                       tweet_id: @tweet.id)
-    ParticipateJob.perform_async(@tweet.id, @tweet.username)
+    ParticipateJob.perform_async(@tweet.tweet_id, @tweet.username, current_user.authentication_providers.first.id)
     render json: {status: :ok}, status: 204
   end
 

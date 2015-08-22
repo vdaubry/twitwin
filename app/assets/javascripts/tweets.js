@@ -6,6 +6,8 @@ var ready = function() {
             $(this).text("Already played")
         });
     }
+
+
 };
 
 $(document).ready(ready);

@@ -5,6 +5,12 @@ class SessionsController < ApplicationController
     
     redirect_to tweets_path
   end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:notice] = "You are signed out"
+    redirect_to '/'
+  end
   
   def failure
     flash[:alert] = params[:message]
