@@ -2,8 +2,12 @@ class SessionsController < ApplicationController
   def create
     user = Oauth::Authorization.new.authorize(oauth_hash: oauth_hash)
     session[:user_id] = user.id
-    
-    redirect_to tweets_path
+
+    if user.email
+      redirect_to tweets_path
+    else
+      redirect_to edit_user_path(user)
+    end
   end
 
   def destroy

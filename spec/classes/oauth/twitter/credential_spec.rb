@@ -5,7 +5,7 @@ describe Oauth::Twitter::Credential, :vcr => true do
     context "valid credentials" do
       it "returns twitter user id" do
         #Credentials for test account : https://twitter.com/VdaTest
-        credential = Oauth::Twitter::Credential.new(token: "3163966989-WQSbTbgWxWLvEO4LqamYc3MClqNDwo8pf8jUWAr", secret: "QDx59KkRgjMhLbaCnymsIpnjLzDH6LH7a77qFBbnZwQ1J")
+        credential = Oauth::Twitter::Credential.new(token: "3163966989-r24o8ueRiLQo7jgRMg5IpOkK2U3izmZknxRnn4d", secret: "hu9aqreZlCJQZbficxApGXCDjN7Wk550nAhzQFavm3yT3")
         credential.verify.should == 3163966989
       end
     end

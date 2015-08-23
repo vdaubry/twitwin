@@ -14,6 +14,14 @@ describe SessionsController do
       it "redirects to user edit path" do
         Oauth::Authorization.any_instance.stubs(:authorize).returns(new_user)
         get :create, provider: "twitter"
+        response.should redirect_to edit_user_path(new_user)
+      end
+    end
+
+    context "existing user" do
+      it "redirects to tweets path" do
+        Oauth::Authorization.any_instance.stubs(:authorize).returns(user)
+        get :create, provider: "twitter"
         response.should redirect_to tweets_path
       end
     end

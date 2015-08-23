@@ -3,7 +3,7 @@ require "rails_helper"
 describe ParticipationController do
 
   let(:tweet) { FactoryGirl.create(:tweet) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user_with_authentication) }
 
   describe "POST create" do
 

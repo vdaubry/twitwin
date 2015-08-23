@@ -36,3 +36,8 @@ group :test do
   gem 'factory_girl_rails',   '~> 4.5.0'
   gem 'timecop',              '~> 0.8.0'
 end
+
+group :development do
+  gem 'capistrano-rails',     '~> 1.1.3'
+  gem 'capistrano-bundler',   '~> 1.1.4'
+end

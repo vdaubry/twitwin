@@ -1,0 +1,16 @@
+<div class="row row-centered form user">
+  <div class="col-md-6 col-md-offset-2">
+    <p class="form-title">Almost done : We just need an adress to send you en email when you've won a contest !</p>
+    <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+
+      <%= render 'layouts/errors', object: @user %>
+
+      <div class="field form-group">
+        <%= f.text_field :email, placeholder: "your email", class: 'form-control' %>
+      </div>
+      <div class="actions form-group">
+        <%= f.submit "Validate", class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>

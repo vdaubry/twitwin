@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
-    render layout: "empty"
+    if current_user
+      redirect_to tweets_path
+    else
+      render layout: "empty"
+    end
   end
 end
