@@ -46,15 +46,6 @@ set :sidekiq_pid, -> { File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid') }
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
   desc "Check that we can access everything"
   task :check_write_permissions do
     on roles(:all) do |host|
@@ -88,5 +79,15 @@ namespace :deploy do
     end
   end
 
+  desc "restart process watched by monit"
+  task :monit_restart do
+    on roles(:web) do
+      puts "restarting services"
+      sudo "monit restart puma"
+      sudo "monit restart sidekiq"
+    end
+  end
+
   after "deploy:published", "deploy:symlink_config"
+  after "deploy:symlink_config", "deploy:monit_restart"
 end

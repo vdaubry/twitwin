@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/projects/663958e6-629d-4141-afb8-0f3bc2a7b0ba/519686/badge.svg)](https://semaphoreci.com/vdaubry/twitwin-2)      
+[![Build Status](https://semaphoreci.com/api/v1/projects/663958e6-629d-4141-afb8-0f3bc2a7b0ba/519686/badge.svg)](https://semaphoreci.com/vdaubry/twitwin-2)
 
 README
 ------
