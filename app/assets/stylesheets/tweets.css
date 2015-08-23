@@ -21,3 +21,10 @@
     position: absolute;
     bottom:21px;
 }
+
+.gift {
+    text-align: center;
+    width: 100%;
+    font-size: 15em !important;
+    margin-top: 50px;
+}

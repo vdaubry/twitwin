@@ -2,16 +2,17 @@
   <% @tweets.each do |tweet| %>
     <div class="col-lg-4 col-sm-6 col-xs-12">
       <div class="panel panel-default">
+        <%= l tweet.tweeted_at, format: :short %>
         <div class="row tweet-info">
           <div class="col-lg-2">
-            <%= image_tag tweet.author_image_url%>
+            <%= link_to image_tag(tweet.author_image_url), "https://twitter.com/#{tweet.username}"%>
           </div>
           <div class="col-lg-10">
             <%= link_to tweet.text, tweet.link %>
           </div>
         </div>
         <div class="grid image">
-          <%= image_tag tweet.image_url, class: "img-responsive" %>
+          <%= link_to tweet_image(tweet), "https://twitter.com/#{tweet.username}/status/#{tweet.tweet_id}" %>
         </div>
         <%=  play_link(tweet, @played) %>
       </div>

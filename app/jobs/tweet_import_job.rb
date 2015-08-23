@@ -3,8 +3,8 @@ class TweetImportJob
 
   def perform
     api = TwitterClient::Api.new
-    tweets = api.tweets(text: "'rt to win'", options: {language: "en"})#, since: 1.day.ago.strftime("%Y-%m-%d")})
-    tweets = tweets.take(100)
+    tweets = api.tweets(text: "'rt pour gagner'", options: {language: "fr"})#, since: 1.day.ago.strftime("%Y-%m-%d")})
+    tweets = tweets.take(200)
     tweets.reject! {|tweet| tweet.retweeted? }
     if tweets.present?
       tweets.map do |api_tweet|

@@ -10,4 +10,12 @@ module TweetsHelper
       link_to "Click to play !", root_path, class: "btn btn-success btn-play"
     end
   end
+
+  def tweet_image(tweet)
+    if tweet.image_url
+      image_tag tweet.image_url, class: "img-responsive"
+    else
+      content_tag(:i, "", class: "fa fa-gift gift")
+    end
+  end
 end
