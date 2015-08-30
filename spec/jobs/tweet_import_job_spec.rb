@@ -6,7 +6,7 @@ describe TweetImportJob, vcr: true do
       today = DateTime.parse("17/08/2015")
       Timecop.travel(today)
       TweetImportJob.new.perform
-      Tweet.count.should == 58
+      Tweet.count.should == 63
       Tweet.where("tweeted_at < ?", today-1.day).count.should == 0
     end
   end

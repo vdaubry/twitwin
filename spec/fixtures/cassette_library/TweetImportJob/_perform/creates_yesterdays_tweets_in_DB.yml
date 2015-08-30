@@ -7292,4 +7292,76 @@ http_interactions:
         saviez-vxus?","id":3033217563,"id_str":"3033217563","indices":[3,17]}],"urls":[{"url":"http:\/\/t.co\/O9NkU9DJK5","expanded_url":"http:\/\/cocofollow.cf","display_url":"cocofollow.cf","indices":[78,100]}]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"fr"}],"search_metadata":{"completed_in":0.099,"max_id":635517744318939135,"max_id_str":"635517744318939135","next_results":"?max_id=635516348043513859&q=%27rt%20pour%20gagner%27&count=100&include_entities=1","query":"%27rt+pour+gagner%27","refresh_url":"?since_id=635517744318939135&q=%27rt%20pour%20gagner%27&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
     http_version: 
   recorded_at: Mon, 17 Aug 2015 00:00:01 GMT
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?count=100&include_entities=1&max_id=633497453220655103&q=%27rt%20to%20win%27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.14.0
+      Authorization:
+      - Bearer AAAAAAAAAAAAAAAAAAAAAGVbhAAAAAAAhoKLg6gbCC6ckHEIG2b1Gx%2FeZRw%3D3cgSbgUqc4jb2XFuSTpVkufPmlO7SkrKycU5ifGIxjQzo8VTeY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '203'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sun, 30 Aug 2015 09:44:51 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Sun, 30 Aug 2015 09:44:51 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_f
+      Set-Cookie:
+      - guest_id=v1%3A144092789131507978; Domain=.twitter.com; Path=/; Expires=Tue,
+        29-Aug-2017 09:44:51 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read
+      X-Connection-Hash:
+      - 8d595bbcde5cdd6d1720ce568a1fb542
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '450'
+      X-Rate-Limit-Remaining:
+      - '449'
+      X-Rate-Limit-Reset:
+      - '1440928791'
+      X-Response-Time:
+      - '232'
+      X-Transaction:
+      - 995902bd03d94c5b
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"statuses":[],"search_metadata":{"completed_in":0.029,"max_id":633497453220655103,"max_id_str":"633497453220655103","query":"%27rt+to+win%27","refresh_url":"?since_id=633497453220655103&q=%27rt%20to%20win%27&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
+    http_version: 
+  recorded_at: Mon, 17 Aug 2015 00:00:00 GMT
 recorded_with: VCR 2.9.3
