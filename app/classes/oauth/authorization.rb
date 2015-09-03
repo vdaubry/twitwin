@@ -1,5 +1,7 @@
 class Oauth::Authorization
   def authorize(oauth_hash:)
+    Rails.logger.debug "Try to authorize user with oauth_hash=#{oauth_hash}"
+
     #We identify the user by its twitter id
     authentication_provider = AuthenticationProvider.where(:uid => oauth_hash["uid"]).first
     
@@ -24,7 +26,7 @@ class Oauth::Authorization
     user.nickname = oauth_hash.extra.raw_info.screen_name
     user.name = oauth_hash.extra.raw_info.name
     user.avatar = oauth_hash.extra.raw_info.profile_image_url
-    user.save
+    user.save!
   end
   
   def update_authentication_provider(authentication_provider:, oauth_hash:)
@@ -32,6 +34,6 @@ class Oauth::Authorization
     authentication_provider.token = oauth_hash.credentials.token
     authentication_provider.secret = oauth_hash.credentials.secret
     authentication_provider.provider = oauth_hash.provider
-    authentication_provider.save
+    authentication_provider.save!
   end
 end
