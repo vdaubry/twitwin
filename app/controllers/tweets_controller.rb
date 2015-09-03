@@ -1,6 +1,13 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.recent.page(params[:page]).per(50)
+    @tweets = Tweet.where(language: language).recent.page(params[:page]).per(50)
     @played = current_user.tweets.where(id: @tweets.map(&:id)) if current_user
+    @tweets_presenter = TweetsPresenter.new
+  end
+
+  private
+
+  def language
+    current_user.try(:language) || "en"
   end
 end

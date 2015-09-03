@@ -1,7 +1,8 @@
 namespace :tweets do
   desc "Import tweets from yesterday"
   task import: :environment do
-    TweetImportJob.new.perform
+    Language.list.each do |lang|
+      TweetImportJob.new.perform(lang)
+    end
   end
-
 end

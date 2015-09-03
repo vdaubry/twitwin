@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    #TODO : ajouter un user builder , appeler EmailValidator pour verifier que l'email est valide
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       redirect_to tweets_url
@@ -14,6 +15,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :avatar)
+    params.require(:user).permit(:name, :email, :avatar, :language)
   end
 end

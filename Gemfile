@@ -19,8 +19,7 @@ gem 'newrelic_rpm',               '~> 3.12.0'
 gem 'mechanize',                  '~> 2.7.3'
 gem 'sidekiq',                    '~> 3.4.1'
 
-group :development, :test do  
-  gem 'byebug',               '~> 4.0.4'
+group :development, :test do
   gem 'spring',               '~> 1.3.6'
   gem 'bullet',               '~> 4.14.7'
   gem 'dotenv-rails',         '~> 2.0.2'

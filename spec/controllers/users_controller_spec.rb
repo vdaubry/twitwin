@@ -18,6 +18,11 @@ describe UsersController do
       user.reload.email.should == "foo@linkastor.com"
     end
 
+    it "updates user language" do
+      put :update, id: user.id, user: {language: "fr"}
+      user.reload.language.should == "fr"
+    end
+
     it "redirects to tweets" do
       put :update, id: user.id, user: {email: "foo@linkastor.com"}
       response.should redirect_to tweets_url

@@ -1,13 +1,26 @@
 <div class="row row-centered form user">
   <div class="col-md-6 col-md-offset-2">
-    <p class="form-title">Almost done : We just need an adress to send you en email when you've won a contest !</p>
+    <p class="form-title">Almost done ! <br>We just need an email and your country to notify you when you've won a contest.</p>
     <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
 
       <%= render 'layouts/errors', object: @user %>
 
+      <br>
       <div class="field form-group">
-        <%= f.text_field :email, placeholder: "your email", class: 'form-control' %>
+        <label>Email address</label>
+        <%= f.text_field :email, placeholder: "Your email", class: 'form-control' %>
       </div>
+
+      <div class="field form-group">
+        <label>Your country</label><br>
+          <div class="user_flag flag flag-icon-background flag-icon-us"><%= f.radio_button :language, "en" %></div>
+          <div class="user_flag flag flag-icon-background flag-icon-fr"><%= f.radio_button :language, "fr" %></div>
+          <div class="user_flag flag flag-icon-background flag-icon-es"><%= f.radio_button :language, "es" %></div>
+      </div>
+
+      <div class="row">
+      </div>
+      <br>
       <div class="actions form-group">
         <%= f.submit "Validate", class: "btn btn-default" %>
       </div>

@@ -1,13 +1,22 @@
 class TweetImportJob
   include Sidekiq::Worker
 
-  def perform
+  def tweets(lang:)
+    return @tweets if @tweets
+    keywords = Keywords.new(lang: lang).load
     api = TwitterClient::Api.new
-    tweets = api.tweets(text: "'rt pour gagner'", options: {language: "fr"})#, since: 1.day.ago.strftime("%Y-%m-%d")})
-    tweets = tweets.take(200)
-    tweets.reject! {|tweet| tweet.retweeted? }
-    if tweets.present?
-      tweets.map do |api_tweet|
+
+    result = keywords.map do |keyword|
+      api.tweets(text: keyword, options: {language: lang}).take(200).reject {|tweet| tweet.retweeted? }
+    end.flatten
+
+    @tweets = result.uniq {|res| res.id}
+  end
+
+  def perform(lang)
+    new_tweets = tweets(lang: lang)
+    if new_tweets.present?
+      new_tweets.map do |api_tweet|
         db_tweet = Tweet.create(tweet_id: api_tweet.id,
                       text: api_tweet.text,
                       tweeted_at: api_tweet.created_at,

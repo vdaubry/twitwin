@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:email)  {|n| "string#{n}@example.com" }
     name              "string"
     avatar            "string"
+    language          "en"
 
     factory :user_with_authentication do
       after(:create) do |user|
