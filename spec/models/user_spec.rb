@@ -17,6 +17,11 @@ describe User do
       it "can create a user without email" do
         FactoryGirl.build(:user, email: nil).save.should == true
       end
+
+      it "can create multiple user without email" do
+        FactoryGirl.build(:user, email: nil).save.should == true
+        FactoryGirl.build(:user, email: nil).save.should == true
+      end
     end
 
     context "relations" do
