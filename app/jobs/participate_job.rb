@@ -1,5 +1,6 @@
 class ParticipateJob
   include Sidekiq::Worker
+  sidekiq_options retry: 2, :dead => false
 
   def perform(tweet_id, username, auth_provider_id)
     auth_provider = AuthenticationProvider.find(auth_provider_id)

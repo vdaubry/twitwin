@@ -57,14 +57,4 @@ describe User do
       end
     end
   end
-
-  describe "#update" do
-    it "validates email presence on update" do
-      user.update(email: nil).should == false
-    end
-
-    it "validates email on update" do
-      user.update(email: "foo").should == false
-    end
-  end
 end

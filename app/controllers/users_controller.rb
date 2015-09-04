@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    #TODO : ajouter un user builder , appeler EmailValidator pour verifier que l'email est valide
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      redirect_to tweets_url
-    else
-      return render 'edit'
+    builder = Builders::UserBuilder.new
+    builder.update(user: @user, params: user_params) do |on|
+      on.success do
+        redirect_to tweets_url
+      end
+
+      on.failure do
+        return render 'edit'
+      end
     end
   end
 

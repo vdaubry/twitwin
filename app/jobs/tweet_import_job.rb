@@ -1,5 +1,6 @@
 class TweetImportJob
   include Sidekiq::Worker
+  sidekiq_options retry: 2, :dead => false
 
   def tweets(lang:)
     return @tweets if @tweets
@@ -23,7 +24,7 @@ class TweetImportJob
                       author_image_url: api_tweet.user.profile_image_uri.to_s,
                       image_url: tweet_image_url(api_tweet),
                       link: link(api_tweet),
-                      language: api_tweet.lang,
+                      language: lang,
                       username: TweetExtensions::Meta.new(text: api_tweet.text,
                                                           author: api_tweet.user.screen_name).username,
                       created_at: DateTime.now)
