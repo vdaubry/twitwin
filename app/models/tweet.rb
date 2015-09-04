@@ -1,5 +1,5 @@
 class Tweet < ActiveRecord::Base
-  scope :recent, -> { order("created_at DESC") } 
+  scope :recent, -> { order("tweeted_at DESC") }
 
   validates :tweet_id, :text, :author_image_url, :tweeted_at, presence: true
   validates :tweet_id, uniqueness: true

@@ -4,7 +4,7 @@ class TweetImportJob
 
   def tweets(lang:)
     return @tweets if @tweets
-    keywords = Keywords.new(lang: lang).load
+    keywords = Keywords.new(lang: lang).texts
     api = TwitterClient::Api.new
 
     result = keywords.map do |keyword|
