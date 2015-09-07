@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
+
+  match '*path', via: :all, to: 'home#error_404'
 end
