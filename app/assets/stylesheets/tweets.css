@@ -3,6 +3,7 @@
     width: 358px;
     height: auto;
     overflow: hidden;
+    max-height: 368px;
 }
 
 .panel.panel-default {
