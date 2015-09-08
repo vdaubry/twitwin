@@ -1,3 +1,7 @@
-texts:
+search_texts:
   - rt pour gagner
   - retweet pour gagner
+
+direct_message_text:
+  - gagné
+  - gagner

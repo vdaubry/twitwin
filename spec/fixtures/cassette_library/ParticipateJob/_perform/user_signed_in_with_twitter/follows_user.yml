@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twitter.com/1.1/statuses/retweet/1.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.14.0
+      Authorization:
+      - OAuth oauth_consumer_key="byrT1MImpBvXWN3nyhASlUT58", oauth_nonce="423178262df4411eb6735f905325993d",
+        oauth_signature="Rho%2F4dZwml43ed0MFFGADGHBdc4%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1441698277", oauth_token="string", oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Content-Length:
+      - '87'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 08 Sep 2015 07:44:37 GMT
+      Server:
+      - tsa_f
+      Set-Cookie:
+      - guest_id=v1%3A144169827772329947; Domain=.twitter.com; Path=/; Expires=Thu,
+        07-Sep-2017 07:44:37 UTC
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - 541b9a2edf9a76bdae8dd0fba1c981cf
+      X-Response-Time:
+      - '105'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":[{"code":89,"message":"Invalid or expired token."}]}'
+    http_version: 
+  recorded_at: Tue, 08 Sep 2015 07:44:37 GMT
+recorded_with: VCR 2.9.3

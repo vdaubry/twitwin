@@ -1,3 +1,6 @@
-texts:
+search_texts:
   - rt to win
   - retweet to win
+
+direct_message_text:
+  - win

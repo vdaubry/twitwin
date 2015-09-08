@@ -15,12 +15,18 @@ module TwitterClient
     end
 
     def follow(user_id:)
+      return if Rails.env.test?
       user = client.user(user_id)
       client.follow(user.id)
     end
 
     def retweet(status_id:)
+      return if Rails.env.test?
       client.retweet([status_id])
+    end
+
+    def direct_messages(options: {})
+      client.direct_messages(options).map {|tweet| TwitterClient::TweetDao.new(tweet: tweet)}
     end
   end
 end

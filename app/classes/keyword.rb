@@ -1,4 +1,4 @@
-class Keywords
+class Keyword
   attr_reader :lang, :file
   def initialize(lang:)
     @lang = lang
@@ -6,6 +6,10 @@ class Keywords
   end
 
   def texts
-    file["texts"]
+    file["search_texts"]
+  end
+
+  def direct_message
+    file["direct_message_text"]
   end
 end
