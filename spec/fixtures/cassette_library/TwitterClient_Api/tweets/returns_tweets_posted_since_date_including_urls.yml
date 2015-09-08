@@ -8762,4 +8762,76 @@ http_interactions:
         Theater","id":89520450,"id_str":"89520450","indices":[61,77]}],"urls":[],"media":[{"id":633278209556119552,"id_str":"633278209556119552","indices":[139,140],"media_url":"http:\/\/pbs.twimg.com\/media\/CMnbLSSWgAAekzw.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/CMnbLSSWgAAekzw.jpg","url":"http:\/\/t.co\/Qs07pa4snN","display_url":"pic.twitter.com\/Qs07pa4snN","expanded_url":"http:\/\/twitter.com\/PoconoTourism\/status\/633278209728118785\/photo\/1","type":"photo","sizes":{"large":{"w":299,"h":168,"resize":"fit"},"thumb":{"w":150,"h":150,"resize":"crop"},"small":{"w":299,"h":168,"resize":"fit"},"medium":{"w":299,"h":168,"resize":"fit"}},"source_status_id":633278209728118785,"source_status_id_str":"633278209728118785","source_user_id":56753025,"source_user_id_str":"56753025"}]},"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"en"}],"search_metadata":{"completed_in":0.199,"max_id":633308364533972992,"max_id_str":"633308364533972992","next_results":"?max_id=633278347888447487&q=%27rt%20to%20win%27%20since%3A2015-08-17T00%3A00%3A00%2B00%3A00&count=100&include_entities=1","query":"%27rt+to+win%27+since%3A2015-08-17T00%3A00%3A00%2B00%3A00","refresh_url":"?since_id=633308364533972992&q=%27rt%20to%20win%27%20since%3A2015-08-17T00%3A00%3A00%2B00%3A00&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
     http_version: 
   recorded_at: Mon, 17 Aug 2015 16:05:40 GMT
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?count=100&include_entities=1&max_id=633278347888447487&q=%27rt%20to%20win%27%20since:2015-08-17T00:00:00%2B00:00
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.14.0
+      Authorization:
+      - Bearer AAAAAAAAAAAAAAAAAAAAAGVbhAAAAAAAhoKLg6gbCC6ckHEIG2b1Gx%2FeZRw%3D3cgSbgUqc4jb2XFuSTpVkufPmlO7SkrKycU5ifGIxjQzo8VTeY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '237'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 08 Sep 2015 15:34:33 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Tue, 08 Sep 2015 15:34:33 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_f
+      Set-Cookie:
+      - guest_id=v1%3A144172647328635669; Domain=.twitter.com; Path=/; Expires=Thu,
+        07-Sep-2017 15:34:33 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read
+      X-Connection-Hash:
+      - 79c6b3af3c48ed713b926d7828578a8d
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '450'
+      X-Rate-Limit-Remaining:
+      - '449'
+      X-Rate-Limit-Reset:
+      - '1441727373'
+      X-Response-Time:
+      - '200'
+      X-Transaction:
+      - 6428a0cbe4475d82
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"statuses":[],"search_metadata":{"completed_in":0.016,"max_id":633278347888447487,"max_id_str":"633278347888447487","query":"%27rt+to+win%27+since%3A2015-08-17T00%3A00%3A00%2B00%3A00","refresh_url":"?since_id=633278347888447487&q=%27rt%20to%20win%27%20since%3A2015-08-17T00%3A00%3A00%2B00%3A00&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
+    http_version: 
+  recorded_at: Tue, 08 Sep 2015 15:34:33 GMT
 recorded_with: VCR 2.9.3

@@ -10,8 +10,10 @@ module TwitterClient
       end
     end
     
-    def tweets(text:, options: {})
-      client.search(text, options)
+    def tweets(text:, count:, options: {})
+      convert_to_dao do
+        client.search(text, options).take(count)
+      end
     end
 
     def follow(user_id:)
@@ -26,7 +28,15 @@ module TwitterClient
     end
 
     def direct_messages(options: {})
-      client.direct_messages(options).map {|tweet| TwitterClient::TweetDao.new(tweet: tweet)}
+      convert_to_dao do
+        client.direct_messages(options)
+      end
+    end
+
+    private
+
+    def convert_to_dao
+      yield.map {|tweet| TwitterClient::TweetDao.new(tweet: tweet)}
     end
   end
 end
