@@ -25,6 +25,7 @@ class TweetImportJob
                   link: api_tweet.link,
                   language: lang,
                   username: api_tweet.username,
+                  #specify created_at so we can validate uniqueness of tweet per day before we create it
                   created_at: DateTime.now)
       Rails.logger.debug db_tweet.errors.full_messages if db_tweet.errors.present?
     end
