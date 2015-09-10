@@ -29,7 +29,12 @@ module TwitterClient
 
     def direct_messages(options: {})
       convert_to_dao do
-        client.direct_messages(options)
+        begin
+          client.direct_messages(options)
+        rescue Twitter::Error::Unauthorized => e
+          Rails.logger.error "Unable to get direct messages because credentials expired : #{e}"
+          Raven.capture_exception(e)
+        end
       end
     end
 

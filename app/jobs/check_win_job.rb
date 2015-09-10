@@ -5,6 +5,7 @@ class CheckWinJob
     user = User.find(user_id)
     return if user.email.nil?
 
+    Rails.logger.debug "Read direct messages for user id : #{user.id}"
     keywords = Keyword.new(lang: user.language).direct_message
 
     auth_provider = user.authentication_providers.first
