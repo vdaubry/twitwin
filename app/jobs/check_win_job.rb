@@ -13,6 +13,7 @@ class CheckWinJob
 
     direct_messages = api.direct_messages(options: {since: 1.day.ago, count: 200})
     win_messages = direct_messages.select do |msg|
+      next unless msg.respond_to?(:text)
       keywords.any? {|key| msg.text.match(/\b#{key}\b/).present? }
     end
     win_messages.each do |win_msg|

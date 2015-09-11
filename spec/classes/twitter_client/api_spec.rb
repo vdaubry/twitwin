@@ -14,6 +14,11 @@ describe TwitterClient::Api, vcr: true do
     end
   end
 
+  # it "retries 2 times before exiting" do
+  #   Twitter::REST::Client.any_instance.expects(:follow).twice.raises(Twitter::Error::TooManyRequests.new)
+  #   TwitterClient::Api.new.follow("VdaTest")
+  # end
+
   # describe "#direct_messages" do
   #   it "returns direct messages posted since date" do
   #     api = TwitterClient::Api.new(access_token: "3163966989-r24o8ueRiLQo7jgRMg5IpOkK2U3izmZknxRnn4d",access_token_secret: "hu9aqreZlCJQZbficxApGXCDjN7Wk550nAhzQFavm3yT3")

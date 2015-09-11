@@ -12,7 +12,7 @@ describe ParticipateJob do
       end
 
       it "follows user" do
-        TwitterClient::Api.any_instance.expects(:follow).with(user_id: "foobar").once
+        TwitterClient::Api.any_instance.expects(:follow).with(username: "foobar").once
         ParticipateJob.new.perform(tweet.id, user.id)
       end
 
@@ -21,6 +21,5 @@ describe ParticipateJob do
         ParticipateJob.new.perform(tweet.id, user.id)
       end
     end
-
   end
 end
