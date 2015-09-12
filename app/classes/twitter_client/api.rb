@@ -20,6 +20,7 @@ module TwitterClient
 
     def follow(username:)
       return if Rails.env.test?
+      Rails.logger.debug "Follow user #{username}"
       user = client.user(username)
       rate_limit do
         client.follow(user.id)
@@ -28,6 +29,7 @@ module TwitterClient
 
     def retweet(status_id:)
       return if Rails.env.test?
+      Rails.logger.debug "Follow status #{status_id}"
       rate_limit do
         client.retweet([status_id])
       end
@@ -54,6 +56,8 @@ module TwitterClient
       number_of_retry = 0
       begin
         yield
+      rescue Twitter::Error::Forbidden => error
+        Rails.logger.debug error.message
       rescue Twitter::Error::TooManyRequests => error
         wait_time = error.rate_limit.reset_in.try(:+, 1)
         Rails.logger.debug("User was rate limited, waiting #{wait_time} sec")
