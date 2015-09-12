@@ -23,3 +23,7 @@ en:
   time:
     formats:
       short: "%d %B %H:%M"
+  play_button:
+    title: "Click to play !"
+    played: "Already played"
+    connect: "Connect to twitter to play !"

@@ -4,3 +4,6 @@ search_texts:
 
 direct_message_text:
   - win
+
+tweet_regex:
+  "((\\bwin\\b)|(\\bWin\\b)|(\\bWIN\\b)).*"

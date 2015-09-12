@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
+  before_filter :set_user_language
 
   def authenticate_current_user!
     if session[:user_id].blank?
@@ -16,6 +17,10 @@ class ApplicationController < ActionController::Base
       session.delete(:user_id)
       nil
     end
+  end
+
+  def set_user_language
+    I18n.locale = current_user.language if current_user
   end
 
 end

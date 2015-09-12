@@ -8,7 +8,7 @@
             <%= link_to image_tag(tweet.author_image_url), "https://twitter.com/#{tweet.username}"%>
           </div>
           <div class="col-lg-10">
-            <%= link_to tweet.text.html_safe, @tweets_presenter.link(tweet: tweet) %>
+            <%= link_to @tweets_presenter.tweet_message(tweet: tweet), @tweets_presenter.link(tweet: tweet) %>
           </div>
         </div>
         <div class="grid image">

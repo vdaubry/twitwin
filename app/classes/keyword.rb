@@ -12,4 +12,8 @@ class Keyword
   def direct_message
     file["direct_message_text"]
   end
+
+  def regex
+    file["tweet_regex"]
+  end
 end
