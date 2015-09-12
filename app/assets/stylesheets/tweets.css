@@ -20,6 +20,7 @@
     width: 92%;
     position: absolute;
     bottom:21px;
+    font-weight: bold !important;
 }
 
 .gift {
