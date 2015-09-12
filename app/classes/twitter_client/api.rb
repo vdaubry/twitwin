@@ -2,7 +2,6 @@ module TwitterClient
   class TooManyRequests < StandardError; end
 
   class Api
-    attr_reader :client
     def initialize(access_token: nil, access_token_secret: nil)
       @client = Twitter::REST::Client.new do |config|
         config.consumer_key        = ENV["TWITTER_OAUTH_API_ID"]
@@ -21,8 +20,8 @@ module TwitterClient
     def follow(username:)
       return if Rails.env.test?
       Rails.logger.debug "Follow user #{username}"
-      user = client.user(username)
       rate_limit do
+        user = client.user(username)
         client.follow(user.id)
       end
     end
@@ -47,6 +46,7 @@ module TwitterClient
     end
 
     private
+    attr_reader :client
 
     def convert_to_dao
       yield.map {|tweet| TwitterClient::TweetDao.new(tweet: tweet)}
@@ -56,8 +56,6 @@ module TwitterClient
       number_of_retry = 0
       begin
         yield
-      rescue Twitter::Error::Forbidden => error
-        Rails.logger.debug error.message
       rescue Twitter::Error::TooManyRequests => error
         wait_time = error.rate_limit.reset_in.try(:+, 1)
         Rails.logger.debug("User was rate limited, waiting #{wait_time} sec")
@@ -68,6 +66,8 @@ module TwitterClient
         else
           raise TwitterClient::TooManyRequests(error.message)
         end
+      rescue StandardError => error
+        Rails.logger.debug error.message
       end
     end
   end

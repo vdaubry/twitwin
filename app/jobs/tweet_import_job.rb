@@ -3,15 +3,16 @@ class TweetImportJob
   sidekiq_options retry: 2, :dead => false
 
   def tweets(lang:)
-    return @tweets if @tweets
     keywords = Keyword.new(lang: lang).texts
     api = TwitterClient::Api.new
 
     result = keywords.map do |keyword|
-      api.tweets(text: keyword, count: 200, options: {language: lang}).reject {|tweet| tweet.retweeted? }
+      api.tweets(text: keyword, count: 200, options: {language: lang})
+          .reject {|tweet| tweet.retweeted? }
+          .reject {|tweet| tweet.image_url.nil? }
     end.flatten
 
-    @tweets = result.uniq {|res| res.id}
+    result.uniq {|res| res.id}
   end
 
   def perform(lang)

@@ -4,7 +4,7 @@ module TwitterClient
              :retweeted?,
              :id,
              :created_at, to: :tweet
-    attr_reader :tweet
+
     def initialize(tweet:)
       @tweet = tweet
     end
@@ -32,5 +32,8 @@ module TwitterClient
       TweetExtensions::Meta.new(text: tweet.text,
                                 author: screen_name).username
     end
+
+    private
+    attr_reader :tweet
   end
 end
