@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :tweet do
     sequence(:tweet_id)  {|n| n }
     sequence(:text)   { |n| "string#{n}" }
-    image_url         "http://foo.bar/img.jpg"
+    sequence(:image_url)   { |n| "http://foo.bar/img.jpg#{n}" }
     link              "http://foo.bar"
     author_image_url  "http://foo.bar/img.jpg"
     language          "en"
