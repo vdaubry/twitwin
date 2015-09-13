@@ -1,5 +1,6 @@
 module TwitterClient
   class TooManyRequests < StandardError; end
+  class CredentialsExpired < StandardError; end
 
   class Api
     def initialize(access_token: nil, access_token_secret: nil)
@@ -39,8 +40,7 @@ module TwitterClient
         begin
           client.direct_messages(options)
         rescue Twitter::Error::Unauthorized => e
-          Rails.logger.error "Unable to get direct messages because credentials expired : #{e}"
-          Raven.capture_exception(e)
+          raise TwitterClient::CredentialsExpired.new(e.message)
         end
       end
     end

@@ -70,6 +70,14 @@ describe CheckWinJob do
           CheckWinJob.new.perform(user_en.id)
         end
       end
+
+      context "credential expired" do
+        it "destroy auth provider" do
+          TwitterClient::Api.any_instance.stubs(:direct_messages).raises(TwitterClient::CredentialsExpired)
+          CheckWinJob.new.perform(user_en.id)
+          user_en.authentication_providers.should be_empty
+        end
+      end
     end
   end
 end

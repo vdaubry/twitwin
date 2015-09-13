@@ -22,5 +22,13 @@ describe Tweet do
       FactoryGirl.build(:tweet, created_at: Date.parse("01/01/2010"), text: "foobar").save.should == true
       FactoryGirl.build(:tweet, created_at: Date.parse("03/11/2010"), text: "foobar").save.should == false
     end
+
+    it "has unique image per month" do
+      Timecop.freeze(Date.parse("01/11/2010"))
+      FactoryGirl.build(:tweet, created_at: Date.parse("01/11/2010"), image_url: "http://www.foo.bar/img.jpg", text: "foo1").save.should == true
+      FactoryGirl.build(:tweet, created_at: Date.parse("10/11/2010"), image_url: "http://www.foo.bar/img.jpg", text: "foo2").save.should == false
+      FactoryGirl.build(:tweet, created_at: Date.parse("10/11/2010"), image_url: "http://www.foo.bar/img2.jpg", text: "foo3").save.should == true
+      FactoryGirl.build(:tweet, created_at: Date.parse("01/11/2011"), image_url: "http://www.foo.bar/img.jpg", text: "foo4").save.should == true
+    end
   end
 end

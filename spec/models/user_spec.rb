@@ -26,7 +26,8 @@ describe User do
 
     context "relations" do
       it "has many authentication providers" do
-        FactoryGirl.create_list(:authentication_provider, 2, user: user)
+        FactoryGirl.create(:authentication_provider, user: user, provider: "twitter")
+        FactoryGirl.create(:authentication_provider, user: user, provider: "facebook")
         user.reload.authentication_providers.count.should == 2
       end
 
