@@ -20,6 +20,9 @@ class ParticipateJob
     user_id = msg['args'].first
     tweet_id = msg['args'].second
     TweetsUser.where(user_id: user_id, tweet_id: tweet_id).first.try(:destroy)
+    error = StandardError.new("Unable to participate to contest for user : #{user_id}, tweet : #{tweet_id}")
+    Rails.logger.error error.message
+    Raven.capture_exception error
   end
 
 end

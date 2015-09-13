@@ -7,6 +7,7 @@ class Tweet < ActiveRecord::Base
   validate :unique_image_url_by_month
 
   def unique_text_by_day
+    i = 0
     if self.created_at && Tweet.where(text: self.text)
             .where("date(created_at) = date('#{self.created_at.strftime("%Y-%m-%d")}')")
             .count>0
