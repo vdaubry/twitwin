@@ -8,7 +8,7 @@ Sidekiq::Testing.fake!
 
 Rails.logger.level = Logger::ERROR
 
-ActiveRecord::Migration.maintain_test_schema!
+#ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
