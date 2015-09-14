@@ -18,7 +18,7 @@ class TweetImportJob
   def perform(lang)
     new_tweets = tweets(lang: lang)
     new_tweets.each do |api_tweet|
-      db_tweet = Tweet.create(tweet_id: api_tweet.id,
+      db_tweet = Tweet.create(twitter_id: api_tweet.id,
                   text: api_tweet.text,
                   tweeted_at: api_tweet.created_at,
                   author_image_url: api_tweet.author_image_url,

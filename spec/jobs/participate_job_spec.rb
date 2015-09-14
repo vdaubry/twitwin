@@ -3,7 +3,7 @@ require "rails_helper"
 describe ParticipateJob do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:tweet) { FactoryGirl.create(:tweet, username: "foobar", tweet_id: 12345) }
+  let(:tweet) { FactoryGirl.create(:tweet, username: "foobar", twitter_id: 12345) }
 
   describe "#perform", vcr: true do
     context "user signed in with twitter" do

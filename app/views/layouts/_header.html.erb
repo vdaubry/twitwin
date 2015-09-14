@@ -6,6 +6,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= menu_link("tweets", tweets_path) %></li>
+        <% if current_user %>
+          <form class="navbar-form navbar-left">
+            <%= link_to("play all", play_all_tweets_path, method: :post, class: "btn btn-primary") %>
+          </form>
+        <% end %>
       </ul>
       <% if current_user %>
         <ul class="nav navbar-nav navbar-right">

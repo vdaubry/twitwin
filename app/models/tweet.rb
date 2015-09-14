@@ -1,8 +1,11 @@
 class Tweet < ActiveRecord::Base
   scope :recent, -> { order("tweeted_at DESC") }
 
-  validates :tweet_id, :text, :author_image_url, :tweeted_at, presence: true
-  validates :tweet_id, uniqueness: true
+  has_many :tweets_users
+  has_many :users, through: :tweets_users, dependent: :destroy
+
+  validates :twitter_id, :text, :author_image_url, :tweeted_at, presence: true
+  validates :twitter_id, uniqueness: true
   validate  :unique_text_by_day
   validate :unique_image_url_by_month
 

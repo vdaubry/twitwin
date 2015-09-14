@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :tweets, only: [:index] do
+    collection do
+      post :play_all
+    end
     resources :participation, only: [:create]
   end
   resources :sessions, only: [:destroy]

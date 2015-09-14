@@ -51,6 +51,12 @@ describe User do
           }.to change { TweetsUser.count }.by(-1)
         end
 
+        it "doesn't destroys tweets when destroyed" do
+          expect {
+            user.destroy
+          }.to change { Tweet.count }.by(0)
+        end
+
         it "cannot have the same tweet twice" do
           TweetsUser.create(user: user, tweet: tweet)
           user.reload.tweets.should == [tweet]

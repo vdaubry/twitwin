@@ -8,7 +8,7 @@ class ParticipateJob
     api = TwitterClient::Api.new(access_token: auth_provider.token, access_token_secret: auth_provider.secret)
 
     api.follow(username: tweet.username)
-    api.retweet(status_id: tweet.tweet_id)
+    api.retweet(status_id: tweet.twitter_id)
   end
 
 

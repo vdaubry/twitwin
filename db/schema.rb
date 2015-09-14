@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913103504) do
+ActiveRecord::Schema.define(version: 20150914021524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150913103504) do
   add_index "authentication_providers", ["user_id", "provider"], name: "index_authentication_providers_on_user_id_and_provider", unique: true, using: :btree
 
   create_table "tweets", force: :cascade do |t|
-    t.integer  "tweet_id",         limit: 8, null: false
+    t.integer  "twitter_id",       limit: 8, null: false
     t.text     "text",                       null: false
     t.string   "image_url"
     t.string   "link"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20150913103504) do
 
   add_index "tweets", ["image_url"], name: "index_tweets_image_on_created_at_by_month", unique: true, using: :btree
   add_index "tweets", ["text"], name: "index_tweets_on_created_at_by_day", unique: true, using: :btree
-  add_index "tweets", ["tweet_id"], name: "index_tweets_on_tweet_id", unique: true, using: :btree
   add_index "tweets", ["tweeted_at"], name: "index_tweets_on_tweeted_at", using: :btree
+  add_index "tweets", ["twitter_id"], name: "index_tweets_on_twitter_id", unique: true, using: :btree
 
   create_table "tweets_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false

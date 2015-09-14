@@ -8,7 +8,7 @@ class TweetsPresenter
   end
 
   def link(tweet:)
-    "https://twitter.com/#{username(tweet: tweet)}/statuses/#{tweet.tweet_id}"
+    "https://twitter.com/#{username(tweet: tweet)}/statuses/#{tweet.twitter_id}"
   end
 
   def tweet_message(tweet:)

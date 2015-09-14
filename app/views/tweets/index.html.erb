@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="grid image">
-          <%= link_to tweet_image(tweet), "https://twitter.com/#{tweet.username}/status/#{tweet.tweet_id}" %>
+          <%= link_to tweet_image(tweet),  @tweets_presenter.link(tweet: tweet) %>
         </div>
         <%=  play_link(tweet, @played) %>
       </div>
