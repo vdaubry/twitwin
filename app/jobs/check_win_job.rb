@@ -3,7 +3,7 @@ class CheckWinJob
 
   def perform(user_id)
     user = User.find(user_id)
-    return if user.email.nil?
+    return if user.email.nil? || user.authentication_providers.blank?
 
     Rails.logger.debug "Read direct messages for user id : #{user.id}"
     auth_provider = user.authentication_providers.first

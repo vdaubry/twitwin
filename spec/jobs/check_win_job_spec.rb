@@ -30,6 +30,14 @@ describe CheckWinJob do
             CheckWinJob.new.perform(user_en.id)
           end
         end
+
+        context "user is not authenticated with twitter" do
+          it "doesn't send mail" do
+            user_en.authentication_providers.delete_all
+            WinMail.expects(:send_win_mail).with(user_en, "a win message").never
+            CheckWinJob.new.perform(user_en.id)
+          end
+        end
       end
 
       context "direct message received yesterday contains a similar keyword" do
