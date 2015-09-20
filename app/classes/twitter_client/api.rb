@@ -49,7 +49,7 @@ module TwitterClient
     attr_reader :client
 
     def convert_to_dao
-      yield.map {|tweet| TwitterClient::TweetDao.new(tweet: tweet)}
+      yield.map {|tweet| TwitterClient::TweetDto.new(tweet: tweet)}
     end
 
     def rate_limit

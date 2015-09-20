@@ -1,7 +1,7 @@
 TwitterTweet = Struct.new(:id, :twitter_id, :text, :tweeted_at, :image_url, :created_at, :author_image_url, :link, :username)
 
 FactoryGirl.define do
-  factory :tweet_dao, class: TwitterClient::TweetDao do
+  factory :tweet_dao, class: TwitterClient::TweetDto do
     id ||= 1
     twitter_id ||= 1
     text ||= "text"

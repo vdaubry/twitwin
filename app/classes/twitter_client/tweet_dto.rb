@@ -1,5 +1,5 @@
 module TwitterClient
-  class TweetDao
+  class TweetDto
     delegate :text,
              :retweeted?,
              :id,
