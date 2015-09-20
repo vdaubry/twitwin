@@ -36,5 +36,6 @@ module Twitwin
 
       { "params" => params }
     end
+    config.log_tags = [ lambda {|req| Time.now.to_s(:db) }, :remote_ip ]
   end
 end
