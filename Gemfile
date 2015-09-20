@@ -8,7 +8,6 @@ gem 'sass-rails',                 '~> 5.0'
 gem 'uglifier',                   '~> 2.7.1'
 gem 'jquery-rails',               '~> 4.0.3'
 gem 'turbolinks',                 '~> 2.5.3'
-gem 'rails_12factor',             '~> 0.0.3'
 gem 'puma',                       '~> 2.11.1'
 gem 'omniauth-twitter',           '~> 1.1.0'
 gem 'twitter',                    '~> 5.14.0'
@@ -19,6 +18,7 @@ gem 'newrelic_rpm',               '~> 3.12.0'
 gem 'mechanize',                  '~> 2.7.3'
 gem 'sidekiq',                    '~> 3.4.1'
 gem 'premailer-rails',            '~> 1.8.2'
+gem 'lograge',                    '~> 0.3.4'
 
 group :development, :test do
   gem 'spring',               '~> 1.3.6'
@@ -40,4 +40,8 @@ end
 group :development do
   gem 'capistrano-rails',     '~> 1.1.3'
   gem 'capistrano-bundler',   '~> 1.1.4'
+end
+
+group :production do
+  gem 'rails_12factor',       '~> 0.0.3'
 end

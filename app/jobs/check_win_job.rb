@@ -7,6 +7,7 @@ class CheckWinJob
 
     Rails.logger.debug "Read direct messages for user id : #{user.id}"
     auth_provider = user.authentication_providers.first
+
     begin
       send_message_if_win(auth_provider, user)
     rescue TwitterClient::CredentialsExpired => e

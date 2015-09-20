@@ -26,5 +26,15 @@ module Twitwin
     config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
 
     config.api_session_expiration = 60*60*24*15 #15 days
+
+    #lograge
+    config.lograge.enabled = true
+    config.lograge.custom_options = lambda do |event|
+      params = event.payload[:params].reject do |k|
+        ['controller', 'action'].include? k
+      end
+
+      { "params" => params }
+    end
   end
 end
