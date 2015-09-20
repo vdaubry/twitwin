@@ -14,9 +14,11 @@ describe TwitterClient::Api, vcr: true do
     end
   end
 
-  # it "retries 2 times before exiting" do
-  #   Twitter::REST::Client.any_instance.expects(:follow).twice.raises(Twitter::Error::TooManyRequests.new)
-  #   TwitterClient::Api.new.follow("VdaTest")
+  # it "catch Forbidden error" do
+  #   Twitter::REST::Client.any_instance.stubs(:follow).raises(Twitter::Error::TooManyRequests.new)
+  #   expect {
+  #     TwitterClient::Api.new.follow(username: "VdaTest")
+  #   }.to raise_error(TwitterClient::TooManyRequests)
   # end
 
   # describe "#direct_messages" do
