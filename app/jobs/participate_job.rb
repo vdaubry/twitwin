@@ -1,28 +1,32 @@
 class ParticipateJob
   include Sidekiq::Worker
-  sidekiq_options retry: 2, :dead => false
+  sidekiq_options retry: 5
 
   def perform(tweet_id, user_id)
+    return if cancelled?
+
+    logger.info "ParticipateJob : user #{user_id} participate to tweet #{tweet_id}"
+
     tweet = Tweet.find(tweet_id)
     auth_provider = User.find(user_id).authentication_providers.first
     api = TwitterClient::Api.new(access_token: auth_provider.token, access_token_secret: auth_provider.secret)
 
-    api.follow(username: tweet.username)
-    api.retweet(status_id: tweet.twitter_id)
+    begin
+      api.follow(username: tweet.username)
+      api.retweet(status_id: tweet.twitter_id)
+    rescue TwitterClient::TooManyRequests => error
+      logger.error "Got rate limited, cancelling this job and re-scheduling next on in #{error.wait_time} seconds"
+      cancel!
+      ParticipateJob.perform_in(error.wait_time.seconds, tweet_id, user_id)
+    end
   end
 
-
-  sidekiq_retry_in do |count|
-    15.minutes * (count + 1) # (i.e. 15min, 30min)
+  def cancelled?
+    Sidekiq.redis {|c| c.exists("cancelled-#{jid}") }
   end
 
-  sidekiq_retries_exhausted do |msg|
-    user_id = msg['args'].first
-    tweet_id = msg['args'].second
-    TweetsUser.where(user_id: user_id, tweet_id: tweet_id).first.try(:destroy)
-    error = StandardError.new("Unable to participate to contest for user : #{user_id}, tweet : #{tweet_id}")
-    Rails.logger.error error.message
-    Raven.capture_exception error
+  def cancel!
+    Sidekiq.redis {|c| c.setex("cancelled-#{jid}", 86400, 1) }
   end
 
 end

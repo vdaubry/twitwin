@@ -5,13 +5,13 @@ class CheckWinJob
     user = User.find(user_id)
     return if user.email.nil? || user.authentication_providers.blank?
 
-    Rails.logger.debug "Read direct messages for user id : #{user.id}"
+    logger.info "CheckWinJob: read direct messages for user id : #{user.id}"
     auth_provider = user.authentication_providers.first
 
     begin
       send_message_if_win(auth_provider, user)
     rescue TwitterClient::CredentialsExpired => e
-      Rails.logger.error "Unable to get direct messages sur user #{user_id} because credentials expired : #{e.message}"
+      logger.error "Unable to get direct messages sur user #{user_id} because credentials expired : #{e.message}"
       auth_provider.destroy
     end
   end

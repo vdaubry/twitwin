@@ -16,6 +16,8 @@ class TweetImportJob
   end
 
   def perform(lang)
+    logger.info "TweetImportJob : start importing for language : #{lang}"
+
     new_tweets = tweets(lang: lang)
     new_tweets.each do |api_tweet|
       db_tweet = Tweet.create(twitter_id: api_tweet.id,
@@ -28,7 +30,7 @@ class TweetImportJob
                   username: api_tweet.username,
                   #specify created_at so we can validate uniqueness of tweet per day before we create it
                   created_at: DateTime.now)
-      Rails.logger.debug db_tweet.errors.full_messages if db_tweet.errors.present?
+      logger.error db_tweet.errors.full_messages if db_tweet.errors.present?
     end
   end
 end

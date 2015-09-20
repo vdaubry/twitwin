@@ -1,6 +1,6 @@
 class Oauth::Authorization
   def authorize(oauth_hash:)
-    Rails.logger.debug "Try to authorize user with oauth_hash=#{oauth_hash}"
+    Rails.logger.info "Try to authorize user with oauth_hash=#{oauth_hash}"
 
     #We identify the user by its twitter id
     authentication_provider = AuthenticationProvider.where(:uid => oauth_hash["uid"]).first

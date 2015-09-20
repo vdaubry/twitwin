@@ -1,7 +1,4 @@
 module TwitterClient
-  class TooManyRequests < StandardError; end
-  class CredentialsExpired < StandardError; end
-
   class Api
     def initialize(access_token: nil, access_token_secret: nil)
       @client = Twitter::REST::Client.new do |config|
@@ -20,7 +17,7 @@ module TwitterClient
 
     def follow(username:)
       return if Rails.env.test?
-      Rails.logger.debug "Follow user #{username}"
+      Rails.logger.info "Follow user #{username}"
       rate_limit do
         user = client.user(username)
         client.follow(user.id)
@@ -29,7 +26,7 @@ module TwitterClient
 
     def retweet(status_id:)
       return if Rails.env.test?
-      Rails.logger.debug "Follow status #{status_id}"
+      Rails.logger.info "Follow status #{status_id}"
       rate_limit do
         client.retweet([status_id])
       end
@@ -53,22 +50,22 @@ module TwitterClient
     end
 
     def rate_limit
-      number_of_retry = 0
       begin
         yield
       rescue Twitter::Error::TooManyRequests => error
         wait_time = error.rate_limit.reset_in.try(:+, 1)
-        Rails.logger.debug("User was rate limited, waiting #{wait_time} sec")
-        sleep wait_time
-        number_of_retry+=1
-        if number_of_retry < 3
-          retry
-        else
-          raise TwitterClient::TooManyRequests(error.message)
-        end
-      rescue StandardError => error
-        Rails.logger.debug error.message
+        raise TwitterClient::TooManyRequests.new(wait_time)
+      rescue Twitter::Error::Forbidden => error
+        Rails.logger.error error.message
       end
     end
   end
+
+  class TooManyRequests < StandardError
+    attr_reader :wait_time
+    def initialize(wait_time)
+      @wait_time = wait_time
+    end
+  end
+  class CredentialsExpired < StandardError; end
 end
