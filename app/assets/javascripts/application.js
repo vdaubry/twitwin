@@ -13,11 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap.min
 //= require_tree .
-
-var home_ready = function() {
-    $('.dropdown-toggle').dropdown();
-};
-
-$(document).ready(home_ready);
-$(document).on('page:load', home_ready);
